@@ -41,12 +41,8 @@
 }
 
 nav a {
-  /* float: left; */
   box-sizing: border-box;
   /* Auto layout */
-
-  /* display: flex; */
-  /* flex-direction: row; */
   align-items: center;
   padding: 16px 20px;
   gap: 8px;
@@ -54,15 +50,10 @@ nav a {
   width: 210px;
   height: 56px;
 
-  /* interface/modal-bg */
-
   background: #1c1c21;
-  /* interface/accent */
-
   border: 1px inset #4c4cff;
   border-radius: 40px;
 
-  /* Inside auto layout */
 }
 
 nav a > * {
