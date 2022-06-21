@@ -1,0 +1,11 @@
+.App {
+    font-family: Jet Brains Mono;
+    flex: 1 1 100%;
+}
+
+.MainApp {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1240px;
+}
