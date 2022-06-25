@@ -1,9 +1,8 @@
 import React from "react";
 import styles from "./burger-ingredients.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import IngredientSection from "./ingredient-section/ingredient-section";
 
-const BurgerIngredients = ({data}) => {
+const BurgerIngredients = () => {
   const [current, setCurrent] = React.useState("one");
 
   return (

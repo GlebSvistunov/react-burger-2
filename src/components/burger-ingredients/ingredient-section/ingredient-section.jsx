@@ -1,7 +1,7 @@
 import Card from "../../card/card";
 import styles from "./ingredient-section.module.css";
 
-function IngredientSection({title, items: data }) {
+function IngredientSection({ title, items: data, setCurrentIngredient }) {
   return (
     <>
       <section className={styles.section}>
@@ -9,16 +9,18 @@ function IngredientSection({title, items: data }) {
         <div className={styles.items}>
           {data.map((item) => (
             <Card
-              key={item._id}
-              image={item.image}
-              price={item.price}
-              name={item.name}
+              data={item}
+              // key={item._id}
+              // image={item.image}
+              // price={item.price}
+              // name={item.name}
+              setCurrentIngredient={setCurrentIngredient}
             />
           ))}
         </div>
       </section>
     </>
-  )
+  );
 }
 
 export default IngredientSection;
