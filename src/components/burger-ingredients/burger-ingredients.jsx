@@ -7,7 +7,6 @@ const BurgerIngredients = () => {
 
   return (
     <section className={styles.all}>
-
       <h1 className="text text_type_main-large">Соберите бургер</h1>
       <div style={{ display: "flex" }}>
         <Tab value="one" active={current === "one"} onClick={setCurrent}>
@@ -21,8 +20,6 @@ const BurgerIngredients = () => {
         </Tab>
       </div>
     </section>
-
-
   );
 };
 

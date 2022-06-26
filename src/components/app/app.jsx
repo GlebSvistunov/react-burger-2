@@ -1,17 +1,22 @@
+import { useEffect, useState } from "react";
 import AppHeader from "../app-header/app-header";
-import { useState } from "react";
-import BurgerIngredients from "../burger-ingredients/burger-ingredients";
-import IngredientSection from "../burger-ingredients/ingredient-section/ingredient-section";
-import data from "../utils/data";
-import styles from "./app.module.css";
 import BurgerConstructor from "./burger-constructor/burger-constructor";
-import OrderDetails from "./modal-windows/order-details/order-details";
+import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import GeneralModal from "./modal-windows/general-modal/general-modal";
+import getIngredients from "../utils/api";
 import IngredientDetails from "./modal-windows/ingredient-details/ingredient-details";
+import IngredientSection from "../burger-ingredients/ingredient-section/ingredient-section";
+import OrderDetails from "./modal-windows/order-details/order-details";
+import styles from "./app.module.css";
 
 function App() {
   const [currentIngredient, setCurrentIngredient] = useState(null);
   const [isOrderDetailsOpen, setOrderDetailsOpen] = useState(false);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    getIngredients().then(setData);
+  }, []);
 
   return (
     <div className={styles.App}>
@@ -21,6 +26,7 @@ function App() {
           paddingTop: 40,
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
+          // justifyContent: "center",
         }}
       >
         <div>
@@ -44,21 +50,23 @@ function App() {
           />
         </div>
         <div style={{ paddingTop: 65 }}>
-          <BurgerConstructor
-            ItemTop={data[0]}
-            ItemMiddle={data.filter((item) => item.type !== "bun")}
-            setOrderDetailsOpen={setOrderDetailsOpen}
-          />
+          {data.length > 0 && (
+            <BurgerConstructor
+              key={data[0]._id}
+              itemTop={data[0]}
+              itemsMiddle={data.filter((item) => item.type !== "bun")}
+              setOrderDetailsOpen={setOrderDetailsOpen}
+            />
+          )}
         </div>
       </div>
       <GeneralModal
         id="general-modal"
-        isOpen={currentIngredient? true : false}
-        setClose={()=> setCurrentIngredient(null)}
+        isOpen={!!currentIngredient}
+        setClose={() => setCurrentIngredient(null)}
         title="Детали ингредиента"
-        >
-      <IngredientDetails currentIngredient={currentIngredient}
- />
+      >
+        <IngredientDetails currentIngredient={currentIngredient} />
       </GeneralModal>
 
       <GeneralModal

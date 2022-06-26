@@ -1,17 +1,18 @@
 import styles from "./ingredients-details.module.css";
+import PropTypes from "prop-types";
+import BurgerItemType from "../../prop-types/prop-types";
 
 function IngredientDetails({ currentIngredient }) {
   return (
     currentIngredient && (
       <section className={styles.Details}>
-        <img src={currentIngredient.image_mobile} className="mt-8" />
+        <img src={currentIngredient.image_mobile} className="mt-8" alt="" />
         <p className="mt-4 text text_type_main-medium">
           {currentIngredient.name}
         </p>
         <p className="mt-4 text text_type_main-medium">
           Цена: {currentIngredient.price}
         </p>
-
 
         <table
           border="0"
@@ -41,5 +42,8 @@ function IngredientDetails({ currentIngredient }) {
   );
 }
 
+IngredientDetails.propTypes = {
+  currentIngredient: PropTypes.shape(BurgerItemType),
+};
 
 export default IngredientDetails;
