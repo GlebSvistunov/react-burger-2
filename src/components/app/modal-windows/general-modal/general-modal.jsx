@@ -3,10 +3,24 @@ import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import ModalOverlay from "../modal-overlay/modal-overlay";
 import styles from "../modal-overlay/modal-overlay.module.css";
 import PropTypes from "prop-types";
+import { useCallback, useEffect } from "react";
 
 const generalModal = document.getElementById("general-modal");
 
 function GeneralModal({ title, isOpen, setClose, children }) {
+  const escFunction = useCallback(
+    (e) => {
+      e.key === "Escape" && setClose();
+    },
+    [setClose]
+  );
+  useEffect(() => {
+    document.addEventListener("keydown", escFunction, false);
+    return () => {
+      document.removeEventListener("keydown", escFunction, false);
+    };
+  });
+
   return ReactDOM.createPortal(
     <ModalOverlay
       isOpen={isOpen}

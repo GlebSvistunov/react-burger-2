@@ -46,7 +46,6 @@ const BurgerIngredients = ({ items: data, setCurrentIngredient }) => {
   );
 };
 BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape(BurgerItemType)).isRequired,
   setCurrentIngredient: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape(BurgerItemType)).isRequired,
 };
