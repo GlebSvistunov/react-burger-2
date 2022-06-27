@@ -1,7 +1,7 @@
 import Card from "../../card/card";
 import styles from "./ingredient-section.module.css";
 import PropTypes from "prop-types";
-import BurgerItemType from "../../app/prop-types/prop-types";
+import BurgerItemType from "../../utils/prop-types/prop-types";
 
 function IngredientSection({ title, items, setCurrentIngredient }) {
   return (

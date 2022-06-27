@@ -1,12 +1,21 @@
 .App {
-    font-family: Jet Brains Mono;
-    flex: 1 1 100%;
-    
+  font-family: Jet Brains Mono;
+  flex: 1 1 100%;
 }
 
 .MainApp {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    max-width: 1240px;
+  padding-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1240px;
+}
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.appContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
 }

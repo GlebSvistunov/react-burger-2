@@ -5,6 +5,9 @@
   flex-direction: column;
   gap: 10px;
   min-height: min-content;
+  padding-top: 65px;
+  padding-left: 20px;
+  /* overflow: scroll; */
 }
 
 .ItemMiddle {

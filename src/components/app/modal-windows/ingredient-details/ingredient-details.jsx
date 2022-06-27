@@ -1,12 +1,12 @@
 import styles from "./ingredients-details.module.css";
 import PropTypes from "prop-types";
-import BurgerItemType from "../../prop-types/prop-types";
+import BurgerItemType from "../../../utils/prop-types/prop-types";
 
 function IngredientDetails({ currentIngredient }) {
   return (
     currentIngredient && (
       <section className={styles.Details}>
-        <img src={currentIngredient.image_mobile} className="mt-8" alt="" />
+        <img src={currentIngredient.image_large} className="mt-8" alt="" />
         <p className="mt-4 text text_type_main-medium">
           {currentIngredient.name}
         </p>

@@ -14,3 +14,6 @@
 .sections {
   overflow-y: scroll;
 }
+.flex {
+  display: flex;
+}

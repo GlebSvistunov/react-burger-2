@@ -6,7 +6,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-constructor.module.css";
 import PropTypes from "prop-types";
-import BurgerItemType from "../prop-types/prop-types";
+import BurgerItemType from "../../utils/prop-types/prop-types";
 
 function BurgerConstructor({ itemTop, itemsMiddle, setOrderDetailsOpen }) {
   if (!itemTop) {

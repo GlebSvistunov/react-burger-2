@@ -1,7 +1,7 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./card.module.css";
 import PropTypes from "prop-types";
-import BurgerItemType from "../app/prop-types/prop-types";
+import BurgerItemType from "../utils/prop-types/prop-types";
 
 function Card({ data, setCurrentIngredient }) {
   return (
