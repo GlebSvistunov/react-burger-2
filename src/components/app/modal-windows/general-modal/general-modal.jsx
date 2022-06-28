@@ -1,20 +1,26 @@
 import ReactDOM from "react-dom";
-import React from "react";
-import { useEffect, useState } from "react";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import ModalOverlay from "../modal-overlay/modal-overlay";
 import styles from "../modal-overlay/modal-overlay.module.css";
+import PropTypes from "prop-types";
+import { useCallback, useEffect } from "react";
 
 const generalModal = document.getElementById("general-modal");
 
-function GeneralModal({title, isOpen, setClose, children}) {
-  const [hasMounted, setHasMounted] = useState(false);
+function GeneralModal({ title, isOpen, setClose, children }) {
+  const escFunction = useCallback(
+    (e) => {
+      e.key === "Escape" && setClose();
+    },
+    [setClose]
+  );
   useEffect(() => {
-    setHasMounted(true);
-  }, []);
-  if (!hasMounted) {
-    return null;
-  }
+    document.addEventListener("keydown", escFunction, false);
+    return () => {
+      document.removeEventListener("keydown", escFunction, false);
+    };
+  });
+
   return ReactDOM.createPortal(
     <ModalOverlay
       isOpen={isOpen}
@@ -43,5 +49,11 @@ function GeneralModal({title, isOpen, setClose, children}) {
     generalModal
   );
 }
+GeneralModal.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  isOpen: PropTypes.bool.isRequired,
+  setClose: PropTypes.func.isRequired,
+};
 
 export default GeneralModal;

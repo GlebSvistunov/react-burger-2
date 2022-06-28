@@ -13,4 +13,8 @@
 
 .sections {
   overflow-y: scroll;
+  max-height: 720px;
+}
+.flex {
+  display: flex;
 }

@@ -3,13 +3,14 @@
   height: 88px;
   background: #1c1c21;
   /* interface/accent */
-  
+
   border: 2px solid #4c4cff;
 
   box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04),
     0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04),
     0px 0px 1px rgba(0, 0, 0, 0.04);
 }
+
 .AppHeader:first-child > * {
   flex: 1;
   align-items: center;
@@ -27,7 +28,7 @@
 
 .leftnav {
   display: flex;
-  
+
   justify-content: space-around;
   gap: 8px;
   margin: 8px;
@@ -35,9 +36,8 @@
 
 .rightnav {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin: 8px;
-  
 }
 
 nav a {
@@ -53,10 +53,9 @@ nav a {
   background: #1c1c21;
   border: 1px inset #4c4cff;
   border-radius: 40px;
-
 }
 
 nav a > * {
-    float: left;
-    padding: 1px 4px 1px;
+  float: left;
+  padding: 1px 4px 1px;
 }

@@ -1,10 +1,14 @@
-import { Logo, BurgerIcon, ListIcon, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import {
+  Logo,
+  BurgerIcon,
+  ListIcon,
+  ProfileIcon,
+} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./app-header.module.css";
-
 
 const AppHeader = () => {
   return (
-    <div className={styles.AppHeader}>
+    <header className={styles.AppHeader}>
       <nav className={styles.leftnav}>
         <a href="#">
           <BurgerIcon type="primary" />
@@ -28,7 +32,7 @@ const AppHeader = () => {
           </p>
         </a>
       </nav>
-    </div>
+    </header>
   );
 };
 
