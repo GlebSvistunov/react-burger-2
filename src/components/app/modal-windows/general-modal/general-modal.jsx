@@ -1,25 +1,25 @@
-import ReactDOM from "react-dom";
-import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import ModalOverlay from "../modal-overlay/modal-overlay";
-import styles from "../modal-overlay/modal-overlay.module.css";
-import PropTypes from "prop-types";
-import { useCallback, useEffect } from "react";
+import ReactDOM from "react-dom"
+import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components"
+import ModalOverlay from "../modal-overlay/modal-overlay"
+import styles from "../modal-overlay/modal-overlay.module.css"
+import PropTypes from "prop-types"
+import { useCallback, useEffect } from "react"
 
-const generalModal = document.getElementById("general-modal");
+const generalModal = document.getElementById("general-modal")
 
 function GeneralModal({ title, isOpen, setClose, children }) {
   const escFunction = useCallback(
     (e) => {
-      e.key === "Escape" && setClose();
+      e.key === "Escape" && setClose()
     },
     [setClose]
-  );
+  )
   useEffect(() => {
-    document.addEventListener("keydown", escFunction, false);
+    document.addEventListener("keydown", escFunction, false)
     return () => {
-      document.removeEventListener("keydown", escFunction, false);
-    };
-  });
+      document.removeEventListener("keydown", escFunction, false)
+    }
+  })
 
   return ReactDOM.createPortal(
     <ModalOverlay
@@ -30,7 +30,7 @@ function GeneralModal({ title, isOpen, setClose, children }) {
       <section
         className={styles.Main}
         onClick={(e) => {
-          e.stopPropagation();
+          e.stopPropagation()
         }}
       >
         <div className={styles.Header}>
@@ -47,13 +47,13 @@ function GeneralModal({ title, isOpen, setClose, children }) {
       </section>
     </ModalOverlay>,
     generalModal
-  );
+  )
 }
 GeneralModal.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string,
   isOpen: PropTypes.bool.isRequired,
   setClose: PropTypes.func.isRequired,
-};
+}
 
-export default GeneralModal;
+export default GeneralModal

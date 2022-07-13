@@ -3,8 +3,8 @@ import {
   BurgerIcon,
   ListIcon,
   ProfileIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
-import styles from "./app-header.module.css";
+} from "@ya.praktikum/react-developer-burger-ui-components"
+import styles from "./app-header.module.css"
 
 const AppHeader = () => {
   return (
@@ -33,7 +33,7 @@ const AppHeader = () => {
         </a>
       </nav>
     </header>
-  );
-};
+  )
+}
 
-export default AppHeader;
+export default AppHeader

@@ -1,26 +1,46 @@
-import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import styles from "./card.module.css";
-import PropTypes from "prop-types";
-import BurgerItemType from "../utils/prop-types/prop-types";
+import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components"
+import styles from "./card.module.css"
+import { useDrag } from "react-dnd"
+import {
+  DND_BURGER_TYPE,
+  DND_INGREDIENT,
+} from "../../services/constants/dnd-items"
 
-function Card({ data, setCurrentIngredient }) {
+function Card({ item, onClick }) {
+  const [{ isDragging }, drag, preview] = useDrag(() => ({
+    type: DND_BURGER_TYPE,
+    item: { type: DND_INGREDIENT, item },
+    collect: (monitor) => {
+      // console.log("drag", monitor)
+      return {
+        isDragging: !!monitor.isDragging(),
+      }
+    },
+  }))
+
+  const opacity = isDragging ? 0.4 : 1
+
   return (
-    <section className={styles.item} onClick={() => setCurrentIngredient(data)}>
-      <img src={data.image} alt="" />
-      <div className={styles.price}>
-        <span className="text text_type_digits-default m-1">{data.price}</span>
-        <CurrencyIcon />
-      </div>
-      <div className={`${styles.name} text text_type_main-default`}>
-        {data.name}
-      </div>
-    </section>
-  );
+    <div ref={drag} style={{ opacity }} onClick={onClick}>
+      <section className={styles.item}>
+        <img src={item.image} alt="" />
+        <div className={styles.price}>
+          <span className="text text_type_digits-default m-1">
+            {item.price}
+          </span>
+          <CurrencyIcon />
+        </div>
+        <div className={`${styles.name} text text_type_main-default`}>
+          {item.name}
+        </div>
+      </section>
+    </div>
+  )
 }
 
-Card.propTypes = {
-  data: PropTypes.shape(BurgerItemType),
-  setCurrentIngredient: PropTypes.func.isRequired,
-};
+// Card.propTypes = {
+//   data: PropTypes.shape(BurgerItemType),
+//   setCurrentIngredient: PropTypes.func.isRequired,
+// }
 
-export default Card;
+export default Card

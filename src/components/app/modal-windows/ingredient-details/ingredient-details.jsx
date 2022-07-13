@@ -1,6 +1,6 @@
-import styles from "./ingredients-details.module.css";
-import PropTypes from "prop-types";
-import BurgerItemType from "../../../utils/prop-types/prop-types";
+import styles from "./ingredients-details.module.css"
+import PropTypes from "prop-types"
+import BurgerItemType from "../../../utils/prop-types/prop-types"
 
 function IngredientDetails({ currentIngredient }) {
   return (
@@ -39,11 +39,11 @@ function IngredientDetails({ currentIngredient }) {
         </table>
       </section>
     )
-  );
+  )
 }
 
 IngredientDetails.propTypes = {
   currentIngredient: PropTypes.shape(BurgerItemType),
-};
+}
 
-export default IngredientDetails;
+export default IngredientDetails
