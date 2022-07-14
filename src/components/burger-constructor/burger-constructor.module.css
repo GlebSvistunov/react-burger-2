@@ -31,3 +31,15 @@
   align-items: center;
   justify-content: flex-end;
 }
+.Nothing {
+  display: flex;
+  border: 1px dotted dodgerblue;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 150%;
+  height: 80px;
+}
+.Nothing p {
+  margin: 0;
+}

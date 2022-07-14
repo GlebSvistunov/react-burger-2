@@ -1,53 +1,45 @@
-import React from "react";
-import styles from "./burger-ingredients.module.css";
-import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import IngredientSection from "./ingredient-section/ingredient-section";
-import PropTypes from "prop-types";
-import BurgerItemType from "../utils/prop-types/prop-types";
+import React from "react"
+import styles from "./burger-ingredients.module.css"
+import { Tab } from "@ya.praktikum/react-developer-burger-ui-components"
+import IngredientSection from "./ingredient-section/ingredient-section"
+import { useSelector } from "react-redux"
 
-const BurgerIngredients = ({ items: data, setCurrentIngredient }) => {
-  const [current, setCurrent] = React.useState("one");
+const BurgerIngredients = () => {
+  const [current, setCurrent] = React.useState("bun")
+  const items = useSelector((state) => state.ingredientsReducer.ingredients)
 
   return (
     <>
       <section className={styles.all}>
         <h1 className="text text_type_main-large">Соберите бургер</h1>
         <div className={styles.flex}>
-          <Tab value="one" active={current === "one"} onClick={setCurrent}>
+          <Tab value="bun" active={current === "bun"} onClick={setCurrent}>
             Булки
           </Tab>
-          <Tab value="two" active={current === "two"} onClick={setCurrent}>
-            Соусы
-          </Tab>
-          <Tab value="three" active={current === "three"} onClick={setCurrent}>
+          <Tab value="main" active={current === "main"} onClick={setCurrent}>
             Начинки
+          </Tab>
+          <Tab value="sauce" active={current === "sauce"} onClick={setCurrent}>
+            Соусы
           </Tab>
         </div>
       </section>
       <div className={styles.sections}>
         <IngredientSection
           title="Булки"
-          items={data.filter((item) => item.type === "bun")}
-          setCurrentIngredient={setCurrentIngredient}
+          items={items.filter((item) => item.type === "bun")}
+        />
+        <IngredientSection
+          title="Начинки"
+          items={items.filter((item) => item.type === "main")}
         />
         <IngredientSection
           title="Соусы"
-          items={data.filter((item) => item.type === "sauce")}
-          setCurrentIngredient={setCurrentIngredient}
-        />
-
-        <IngredientSection
-          title="Начинки"
-          items={data.filter((item) => item.type === "main")}
-          setCurrentIngredient={setCurrentIngredient}
+          items={items.filter((item) => item.type === "sauce")}
         />
       </div>
     </>
-  );
-};
-BurgerIngredients.propTypes = {
-  setCurrentIngredient: PropTypes.func.isRequired,
-  items: PropTypes.arrayOf(PropTypes.shape(BurgerItemType)).isRequired,
-};
+  )
+}
 
-export default BurgerIngredients;
+export default BurgerIngredients

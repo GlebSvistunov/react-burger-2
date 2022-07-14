@@ -1,0 +1,3 @@
+export const DND_BURGER_TYPE = "DND_BURGER_TYPE"
+export const DND_INGREDIENT = "DND_INGREDIENT"
+export const DND_COMPONENT = "DND_COMPONENT"

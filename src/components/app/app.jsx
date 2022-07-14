@@ -1,26 +1,26 @@
-import { useEffect, useState } from "react";
-import AppHeader from "../app-header/app-header";
-import BurgerConstructor from "./burger-constructor/burger-constructor";
-import BurgerIngredients from "../burger-ingredients/burger-ingredients";
-import GeneralModal from "./modal-windows/general-modal/general-modal";
-import getIngredients from "../utils/api";
-import IngredientDetails from "./modal-windows/ingredient-details/ingredient-details";
-// import IngredientSection from "../burger-ingredients/ingredient-section/ingredient-section";
-import OrderDetails from "./modal-windows/order-details/order-details";
-import styles from "./app.module.css";
+import { useEffect } from "react"
+import AppHeader from "../app-header/app-header"
+import BurgerConstructor from "../burger-constructor/burger-constructor"
+import BurgerIngredients from "../burger-ingredients/burger-ingredients"
+import GeneralModal from "./modal-windows/general-modal/general-modal"
+import { getIngredients } from "../../services/action/ingredients"
+import IngredientDetails from "./modal-windows/ingredient-details/ingredient-details"
+import OrderDetails from "./modal-windows/order-details/order-details"
+import styles from "./app.module.css"
+import { useDispatch, useSelector } from "react-redux"
+import { closeCurrentIngredient } from "../../services/action/current-ingredient"
+import { closeOrder } from "../../services/action/order"
 
 function App() {
-  const [currentIngredient, setCurrentIngredient] = useState(null);
-  const [isOrderDetailsOpen, setOrderDetailsOpen] = useState(false);
-  const [data, setData] = useState([]);
+  const dispatch = useDispatch()
+  const currentIngredient = useSelector(
+    (store) => store.currentIngredientReducer.value
+  )
+  const order = useSelector((store) => store.orderReducer.order)
 
   useEffect(() => {
-    getIngredients()
-      .then(setData)
-      .catch((e) => {
-        console.error(e);
-      });
-  }, []);
+    dispatch(getIngredients())
+  }, [dispatch])
 
   return (
     <div className={styles.page}>
@@ -28,41 +28,31 @@ function App() {
         <AppHeader />
         <div className={styles.appContent}>
           <div>
-            <BurgerIngredients
-              items={data}
-              setCurrentIngredient={setCurrentIngredient}
-            />
+            <BurgerIngredients />
           </div>
           <div>
-            {data.length > 0 && (
-              <BurgerConstructor
-                key={data[0]._id}
-                itemTop={data[0]}
-                itemsMiddle={data.filter((item) => item.type !== "bun")}
-                setOrderDetailsOpen={setOrderDetailsOpen}
-              />
-            )}
+            <BurgerConstructor />
           </div>
         </div>
         <GeneralModal
           id="general-modal"
           isOpen={!!currentIngredient}
-          setClose={() => setCurrentIngredient(null)}
+          setClose={() => dispatch(closeCurrentIngredient())}
           title="Детали ингредиента"
         >
-          <IngredientDetails currentIngredient={currentIngredient} />
+          <IngredientDetails />
         </GeneralModal>
 
         <GeneralModal
           id="general-modal"
-          isOpen={isOrderDetailsOpen}
-          setClose={() => setOrderDetailsOpen(false)}
+          isOpen={!!order}
+          setClose={() => dispatch(closeOrder())}
         >
           <OrderDetails />
         </GeneralModal>
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

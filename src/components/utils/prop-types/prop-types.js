@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"
 
 const BurgerItemType = {
   _id: PropTypes.string.isRequired,
@@ -13,6 +13,6 @@ const BurgerItemType = {
   image_mobile: PropTypes.string.isRequired,
   image_large: PropTypes.string.isRequired,
   __v: PropTypes.number.isRequired,
-};
+}
 
-export default BurgerItemType;
+export default BurgerItemType
