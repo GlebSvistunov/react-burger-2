@@ -22,7 +22,7 @@ function App() {
   const ingredients = useSelector(
     (store) => store.ingredientsReducer.ingredients
   )
-  const burger = useSelector((store) => store.burgerReducer.burger)
+
   const order = useSelector((store) => store.orderReducer.order)
 
   useEffect(() => {
@@ -40,10 +40,10 @@ function App() {
         <AppHeader />
         <div className={styles.appContent}>
           <div>
-            <BurgerIngredients items={ingredients} />
+            <BurgerIngredients />
           </div>
           <div>
-            {ingredients.length > 0 && <BurgerConstructor burger={burger} />}
+            <BurgerConstructor />
           </div>
         </div>
         <GeneralModal

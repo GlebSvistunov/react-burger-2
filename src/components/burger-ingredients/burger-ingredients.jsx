@@ -2,9 +2,11 @@ import React from "react"
 import styles from "./burger-ingredients.module.css"
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components"
 import IngredientSection from "./ingredient-section/ingredient-section"
+import { useSelector } from "react-redux"
 
-const BurgerIngredients = ({ items, setCurrentIngredient }) => {
+const BurgerIngredients = () => {
   const [current, setCurrent] = React.useState("bun")
+  const items = useSelector((state) => state.ingredientsReducer.ingredients)
 
   return (
     <>

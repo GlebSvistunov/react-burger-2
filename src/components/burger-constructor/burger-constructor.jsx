@@ -18,11 +18,9 @@ import { openOrder } from "../../services/action/order"
 import { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 
-export const BurgerConstructor = ({ burger }) => {
+export const BurgerConstructor = () => {
   const dispatch = useDispatch()
-
-  //burger.components.ingredient.reduce((a, b) => a + b.price, 0)????
-
+  const burger = useSelector((store) => store.burgerReducer.burger)
   const [{ isOver }, drop] = useDrop(() => ({
     accept: DND_BURGER_TYPE,
     drop: (item) => {
@@ -48,7 +46,7 @@ export const BurgerConstructor = ({ burger }) => {
 
   const canCalculateOrder = !!burger?.bun ?? false
   const total = canCalculateOrder
-    ? burger.components.reduce((acc, x) => (acc += x.ingredient.price), 0) +
+    ? burger.components.reduce((acc, x) => acc + x.ingredient.price, 0) +
       burger.bun.price * 2
     : "Need bun"
 
@@ -95,7 +93,7 @@ export const BurgerConstructor = ({ burger }) => {
             className="text text_type_digits-medium m-2"
           >
             {total}
-            {canCalculateOrder ? <CurrencyIcon /> : ""}
+            {canCalculateOrder && <CurrencyIcon />}
           </span>
           <Button
             type="primary"
