@@ -15,14 +15,18 @@ import { dropComponent, dropIngredient } from "../../services/action/burger"
 import { useDispatch } from "react-redux"
 import { BurgerComponent } from "./burger-component/burger-component"
 import { openOrder } from "../../services/action/order"
+import { useState, useEffect } from "react"
+import { useSelector } from "react-redux"
 
 export const BurgerConstructor = ({ burger }) => {
   const dispatch = useDispatch()
 
+  //burger.components.ingredient.reduce((a, b) => a + b.price, 0)????
+
   const [{ isOver }, drop] = useDrop(() => ({
     accept: DND_BURGER_TYPE,
     drop: (item) => {
-      console.log("drop", item)
+      // console.log("drop", item)
       switch (item.type) {
         case DND_INGREDIENT: {
           dispatch(dropIngredient(item.item))
@@ -42,6 +46,12 @@ export const BurgerConstructor = ({ burger }) => {
     }),
   }))
 
+  const canCalculateOrder = !!burger?.bun ?? false
+  const total = canCalculateOrder
+    ? burger.components.reduce((acc, x) => (acc += x.ingredient.price), 0) +
+      burger.bun.price * 2
+    : "Need bun"
+
   return (
     <section className={styles.AllElements}>
       <div ref={drop} className={styles.AllElements}>
@@ -56,7 +66,10 @@ export const BurgerConstructor = ({ burger }) => {
         )}
         <ul className={styles.ItemMiddle}>
           {!burger?.components?.length ? (
-            <div>Nothing</div>
+            <div className={styles.Nothing}>
+              <p>Nothing</p>
+              <p>Drag&Drop something here</p>
+            </div>
           ) : (
             burger.components.map((component) => {
               return (
@@ -81,8 +94,8 @@ export const BurgerConstructor = ({ burger }) => {
             style={{ marginRight: 25 }}
             className="text text_type_digits-medium m-2"
           >
-            610
-            <CurrencyIcon />
+            {total}
+            {canCalculateOrder ? <CurrencyIcon /> : ""}
           </span>
           <Button
             type="primary"
