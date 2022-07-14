@@ -5,7 +5,7 @@ const initialState = {
   error: "",
 }
 
-export const OrderReducer = (state = initialState, action) => {
+export const orderReducer = (state = initialState, action) => {
   switch (action.type) {
     case ORDER_CLOSE: {
       return {

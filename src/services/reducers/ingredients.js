@@ -9,7 +9,7 @@ const initialState = {
   error: "",
 }
 
-export const IngredientsReducer = (state = initialState, action) => {
+export const ingredientsReducer = (state = initialState, action) => {
   //console.log("action", action);
   switch (action.type) {
     case GET_INGREDIENTS_REQUEST: {

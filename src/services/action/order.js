@@ -2,17 +2,19 @@ import { ORDER_CLOSE, ORDER_OPEN, ORDER_SUCCESS, ORDER_ERROR } from "."
 import { getOrderRequest } from "../../components/utils/api"
 
 export const postOrder = (order) => (dispatch) => {
-  return getOrderRequest(order).then((res) => {
-    return res && res.success
-      ? dispatch({
-          type: ORDER_SUCCESS,
-          number: res.order.number,
-        })
-      : dispatch({
-          type: ORDER_ERROR,
-          error: "aaa!",
-        })
-  })
+  return getOrderRequest(order)
+    .then((res) => {
+      return res && res.success
+        ? dispatch({
+            type: ORDER_SUCCESS,
+            number: res.order.number,
+          })
+        : dispatch({
+            type: ORDER_ERROR,
+            error: "aaa!",
+          })
+    })
+    .catch(console.error)
 }
 
 export const openOrder = (items) => (dispatch) => {

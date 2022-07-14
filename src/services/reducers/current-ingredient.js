@@ -4,7 +4,7 @@ const initialState = {
   value: null,
 }
 
-export const CurrentIngredientReducer = (state = initialState, action) => {
+export const currentIngredientReducer = (state = initialState, action) => {
   switch (action.type) {
     case CURRENT_INGREDIENT_OPEN: {
       return {

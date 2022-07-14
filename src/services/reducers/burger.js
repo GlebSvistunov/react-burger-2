@@ -11,7 +11,7 @@ const initialState = {
   },
 }
 
-export const BurgerReducer = (state = initialState, action) => {
+export const burgerReducer = (state = initialState, action) => {
   switch (action.type) {
     case BURGER_DROP_INGREDIENT: {
       if (action.ingredient.type === "bun") {
