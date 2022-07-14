@@ -1,8 +1,12 @@
 import styles from "./ingredients-details.module.css"
 import PropTypes from "prop-types"
 import BurgerItemType from "../../../utils/prop-types/prop-types"
+import { useSelector } from "react-redux"
 
-function IngredientDetails({ currentIngredient }) {
+function IngredientDetails() {
+  const currentIngredient = useSelector(
+    (store) => store.currentIngredientReducer.value
+  )
   return (
     currentIngredient && (
       <section className={styles.Details}>

@@ -8,10 +8,7 @@ import IngredientDetails from "./modal-windows/ingredient-details/ingredient-det
 import OrderDetails from "./modal-windows/order-details/order-details"
 import styles from "./app.module.css"
 import { useDispatch, useSelector } from "react-redux"
-import {
-  openCurrentIngredient,
-  closeCurrentIngredient,
-} from "../../services/action/current-ingredient"
+import { closeCurrentIngredient } from "../../services/action/current-ingredient"
 import { closeOrder } from "../../services/action/order"
 
 function App() {
@@ -19,19 +16,10 @@ function App() {
   const currentIngredient = useSelector(
     (store) => store.currentIngredientReducer.value
   )
-  const ingredients = useSelector(
-    (store) => store.ingredientsReducer.ingredients
-  )
-
   const order = useSelector((store) => store.orderReducer.order)
 
   useEffect(() => {
-    getIngredients(dispatch)
-      .then((data) => {
-        console.log("then data", data)
-        return data
-      })
-      .catch(console.error)
+    dispatch(getIngredients())
   }, [dispatch])
 
   return (
@@ -52,7 +40,7 @@ function App() {
           setClose={() => dispatch(closeCurrentIngredient())}
           title="Детали ингредиента"
         >
-          <IngredientDetails currentIngredient={currentIngredient} />
+          <IngredientDetails />
         </GeneralModal>
 
         <GeneralModal

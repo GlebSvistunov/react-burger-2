@@ -1,5 +1,7 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components"
 import styles from "./card.module.css"
+import PropTypes from "prop-types"
+import BurgerItemType from "../utils/prop-types/prop-types"
 import { useDrag } from "react-dnd"
 import {
   DND_BURGER_TYPE,
@@ -38,9 +40,9 @@ function Card({ item, onClick }) {
   )
 }
 
-// Card.propTypes = {
-//   data: PropTypes.shape(BurgerItemType),
-//   setCurrentIngredient: PropTypes.func.isRequired,
-// }
+Card.propTypes = {
+  item: PropTypes.shape(BurgerItemType),
+  onClick: PropTypes.func.isRequired,
+}
 
 export default Card

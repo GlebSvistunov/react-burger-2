@@ -1,6 +1,8 @@
 import Card from "../../card/card"
 import styles from "./ingredient-section.module.css"
 import { useDispatch } from "react-redux"
+import PropTypes from "prop-types"
+import BurgerItemType from "../../utils/prop-types/prop-types"
 import { openCurrentIngredient } from "../../../services/action/current-ingredient"
 
 function IngredientSection({ title, items }) {
@@ -21,9 +23,9 @@ function IngredientSection({ title, items }) {
   )
 }
 
-// IngredientSection.propTypes = {
-//   title: PropTypes.string.isRequired,
-//   items: PropTypes.arrayOf(PropTypes.shape(BurgerItemType)).isRequired,
-// }
+IngredientSection.propTypes = {
+  title: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(PropTypes.shape(BurgerItemType)).isRequired,
+}
 
 export default IngredientSection
